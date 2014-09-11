@@ -1,0 +1,11 @@
+.classpath
+.settings
+.project
+target
+build
+test-output
+.surefire-*
+.DS_Store
+.idea
+*.iml
+webapps
