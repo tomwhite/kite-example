@@ -21,7 +21,7 @@
 
   <groupId>org.kitesdk.examples</groupId>
   <artifactId>openshift-demo</artifactId>
-  <version>0.16.1-SNAPSHOT</version>
+  <version>0.16.0</version>
   <packaging>war</packaging>
 
   <name>openshift-demo</name>
@@ -29,7 +29,7 @@
   <parent>
     <groupId>org.kitesdk</groupId>
     <artifactId>kite-app-parent-cdh5</artifactId>
-    <version>0.16.1-SNAPSHOT</version>
+    <version>0.16.0</version>
   </parent>
 
   <properties>
