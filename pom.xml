@@ -37,6 +37,15 @@
     <kite.hive.version>0.12.0-cdh5.0.0</kite.hive.version><!-- TODO: harmonize on latest CDH5 version -->
   </properties>
 
+  <profiles>
+    <profile>
+      <id>openshift</id>
+      <properties>
+        <master.host>${env.OPENSHIFT_JBOSSEWS_IP}</master.host>
+      </properties>
+    </profile>
+  </profiles>
+
   <repositories>
     <repository>
       <id>java.net2</id>
