@@ -59,7 +59,7 @@ To replace it with the Kite webapp, type the following:
 cd sessionization
 git remote add upstream -m master git://github.com/tomwhite/kite-example.git
 git pull -s recursive -X theirs upstream master
-git push origin
+git push origin master
 ```
 
 The push will do a full build and deploy, which will take a few minutes. When it’s done,

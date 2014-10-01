@@ -43,6 +43,17 @@
       <name>Repository hosting the jee6 artifacts</name>
       <url>http://download.java.net/maven/2</url>
     </repository>
+    <!-- TODO: remove when we're not using a Kite SNAPSHOT -->
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
   </repositories>
 
   <dependencies>
@@ -264,6 +275,12 @@
         <configuration>
           <outputDirectory>webapps</outputDirectory>
           <warName>ROOT</warName>
+          <webResources>
+            <resource>
+              <directory>${basedir}/src/main/webapp</directory>
+              <filtering>true</filtering>
+            </resource>
+          </webResources>
         </configuration>
       </plugin>
       <plugin>

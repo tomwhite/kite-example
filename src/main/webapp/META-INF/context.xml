@@ -17,6 +17,6 @@
   <Resource name="jdbc/hive" auth="Container" type="javax.sql.DataSource"
             maxActive="1" maxIdle="1" maxWait="10000"
             driverClassName="org.apache.hive.jdbc.HiveDriver"
-            url="jdbc:hive2://localhost:10000/;auth=noSasl"/>
+            url="jdbc:hive2://${master.host}:10000/;auth=noSasl"/>
 
 </Context>

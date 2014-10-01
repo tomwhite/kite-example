@@ -20,6 +20,8 @@ public class MiniClusterContextListener implements ServletContextListener {
 
   private final Logger LOG = Logger.getLogger(MiniClusterContextListener.class);
 
+  private static final String OPENSHIFT_BIND_KEY = "OPENSHIFT_JBOSSEWS_IP";
+
   private MiniCluster miniCluster;
 
   @Override
@@ -27,8 +29,13 @@ public class MiniClusterContextListener implements ServletContextListener {
     File tempDir = (File) event.getServletContext().getAttribute(ServletContext.TEMPDIR);
     File workDir = new File(tempDir, "kite-minicluster-webapp");
     LOG.info("Work dir for kite-minicluster: " + workDir);
+    String bindAddress = "127.0.0.1";
+    if (System.getenv(OPENSHIFT_BIND_KEY) != null) {
+      bindAddress = System.getenv(OPENSHIFT_BIND_KEY);
+    }
+    LOG.info("Using bind address: " + bindAddress);
     miniCluster = new MiniCluster.Builder().workDir(workDir.getAbsolutePath())
-        .bindIP("127.0.0.1")
+        .bindIP(bindAddress)
         .addService(HdfsService.class)
         .addService(HiveService.class)
         .addService(FlumeService.class)

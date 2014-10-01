@@ -23,6 +23,6 @@
   <property>
     <!-- this has to be specified in a site file, since otherwise the HiveServer2 in minicluster doesn't pick it up correctly -->
     <name>hive.metastore.uris</name>
-    <value>thrift://localhost:9083</value>
+    <value>thrift://${master.host}:9083</value>
   </property>
 </configuration>
