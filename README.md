@@ -59,10 +59,57 @@ To replace it with the Kite webapp, type the following:
 cd sessionization
 git remote add upstream -m master git://github.com/tomwhite/kite-example.git
 git pull -s recursive -X theirs upstream master
+```
+
+The webapp needs to be configured to use the private IP address of the OpenShift host 
+as the bind address for the Kite minicluster that it runs. First find the private IP by 
+logging into the OpenShift machine
+(details on the OpenShift application page, under 'Remote Access') and type:
+
+```bash
+cat /etc/hosts
+```
+
+Make a note of the private IP address (beginning with 10.) and edit the
+_hadoop.properties_ file back on your local machine to have that address instead of 
+`localhost`. Then commit the change and push:
+
+```bash
+git commit -am "Change master host."
 git push origin master
 ```
 
 The push will do a full build and deploy, which will take a few minutes. When it’s done,
-the home page will be available at http://sessionization-<your-domain>.rhcloud.com/,
+the home page will be available at http://sessionization-[your-domain].rhcloud.com/,
 the URL from the `rhc app create` command (you can also access your OpenShift applications
 from https://openshift.redhat.com/app/console/applications).
+
+**Note**: You can see the webapp container logs if you log into the OpenShift machine
+and type:
+
+```bash
+tail -f app-root/logs/jbossews.log
+```
+
+The page at http://sessionization-<your-domain>.rhcloud.com/
+presents you with a very simple web page for sending messages.
+
+The message events are sent to the Flume agent
+over a socket, and the agent writes the events to the Kite dataset sink.
+
+Send a few messages using the web form. Then wait 30 seconds for the sink to roll the 
+file so that the data is visible. This page (which uses a Hive JDBC connection to run a
+ query), shows all the events in the dataset:
+ http://sessionization-[your-domain].rhcloud.com/all_events.jsp
+
+Stop the application with
+
+```bash
+rhc app stop sessionization
+```
+
+When you've finished with the application, delete it permanently with
+
+```bash
+rhc app delete sessionization
+```
