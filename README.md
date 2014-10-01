@@ -14,6 +14,8 @@ The example runs in a local Tomcat instance, as well as on OpenShift.
 To build the project, type
 
 ```bash
+git clone https://github.com/tomwhite/kite-example.git
+cd kite-example
 mvn package
 ```
 
@@ -23,7 +25,6 @@ this example we'll start an embedded Tomcat instance using Maven:
 ```bash
 mvn tomcat7:run
 ```
-
 
 Navigate to [http://localhost:8080/openshift-demo](http://localhost:8080/openshift-demo),
 which presents you with a very simple web page for sending messages.
@@ -38,4 +39,30 @@ file so that the data is visible. This page (which uses a Hive JDBC connection t
 
 ## Running on OpenShift
 
-TODO
+Before going any further you need to open an [OpenShift account](https://www.openshift.com/)
+and install the [client tools](https://developers.openshift.com/en/getting-started-client-tools.html).
+
+**Note**: You will need to have an account that allows you to run large gear sizes (this
+is not possible with the free account).
+
+On your local machine run the following commands to create a new application running on
+OpenShift online:
+
+```bash
+rhc app create sessionization jbossews-2.0 -g large
+```
+
+This will create a plain webapp (its URL will be printed to the console).
+To replace it with the Kite webapp, type the following:
+
+```bash
+cd sessionization
+git remote add upstream -m master git://github.com/tomwhite/kite-example.git
+git pull -s recursive -X theirs upstream master
+git push origin
+```
+
+The push will do a full build and deploy, which will take a few minutes. When it’s done,
+the home page will be available at http://sessionization-<your-domain>.rhcloud.com/,
+the URL from the `rhc app create` command (you can also access your OpenShift applications
+from https://openshift.redhat.com/app/console/applications).
