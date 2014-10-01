@@ -75,7 +75,7 @@ and type:
 tail -f app-root/logs/jbossews.log
 ```
 
-The page at http://sessionization-<your-domain>.rhcloud.com/
+The page at http://sessionization-[your-domain].rhcloud.com/
 presents you with a very simple web page for sending messages.
 
 The message events are sent to the Flume agent
