@@ -39,7 +39,7 @@ public class MiniClusterContextListener implements ServletContextListener {
         .addService(HdfsService.class)
         .addService(HiveService.class)
         .addService(FlumeService.class)
-        .flumeConfiguration("flume.properties").flumeAgentName("tier1")
+        .flumeConfiguration("resource:flume.properties").flumeAgentName("tier1")
         .clean(true).build();
     try {
       miniCluster.start();
