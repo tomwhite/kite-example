@@ -45,25 +45,25 @@ and install the [client tools](https://developers.openshift.com/en/getting-start
 **Note**: You will need to have an account that allows you to run large gear sizes (this
 is not possible with the free account).
 
-On your local machine run the following commands to create a new application running on
-OpenShift online:
+On your local machine run the following commands to create a new application 
+called 'logging' running on OpenShift online:
 
 ```bash
-rhc app create sessionization jbossews-2.0 -g large
+rhc app create logging jbossews-2.0 -g large
 ```
 
 This will create a plain webapp (its URL will be printed to the console).
 To replace it with the Kite webapp, type the following:
 
 ```bash
-cd sessionization
+cd logging
 git remote add upstream -m master git://github.com/tomwhite/kite-example.git
 git pull -s recursive -X theirs upstream master
 git push origin master
 ```
 
 The push will do a full build and deploy, which will take a few minutes. When it’s done,
-the home page will be available at http://sessionization-[your-domain].rhcloud.com/,
+the home page will be available at http://logging-[your-domain].rhcloud.com/,
 the URL from the `rhc app create` command (you can also access your OpenShift applications
 from https://openshift.redhat.com/app/console/applications).
 
@@ -75,7 +75,7 @@ and type:
 tail -f app-root/logs/jbossews.log
 ```
 
-The page at http://sessionization-[your-domain].rhcloud.com/
+The page at http://logging-[your-domain].rhcloud.com/
 presents you with a very simple web page for sending messages.
 
 The message events are sent to the Flume agent
@@ -84,24 +84,24 @@ over a socket, and the agent writes the events to the Kite dataset sink.
 Send a few messages using the web form. Then wait 30 seconds for the sink to roll the 
 file so that the data is visible. This page (which uses a Hive JDBC connection to run a
  query), shows all the events in the dataset:
- http://sessionization-[your-domain].rhcloud.com/all_events.jsp
+ http://logging-[your-domain].rhcloud.com/all_events.jsp
  
 **Note**: By default the application only has 1GB of disk space, 
 which is not enough if you leave the application running for long. You can increase it 
 via the web console, or by running:
 
 ```bash
-rhc cartridge storage jbossews-2.0 -a sessionization --set 4
+rhc cartridge storage jbossews-2.0 -a logging --set 4
 ```
 
 Stop the application with
 
 ```bash
-rhc app stop sessionization
+rhc app stop logging
 ```
 
 When you've finished with the application, delete it permanently with
 
 ```bash
-rhc app delete sessionization
+rhc app delete logging
 ```
