@@ -7,7 +7,7 @@ JDBC.
 To facilitate rapid development, the webapp runs a Hadoop minicluster that provides all
 the necessary components.
 
-The example runs in a local Tomcat instance, as well as on OpenShift.
+The example runs in a local Tomcat instance, as well as on Red Hat's OpenShift.
 
 ## Running Locally
 
@@ -63,13 +63,13 @@ git push origin master
 ```
 
 The push will do a full build and deploy, which will take a few minutes. When it’s done,
-the home page will be available at http://logging-[your-domain].rhcloud.com/,
-the URL from the `rhc app create` command (you can also access your OpenShift applications
-from https://openshift.redhat.com/app/console/applications).
+the home page will be available at http://logging-[your-domain].rhcloud.com/, which is
+the URL that was printed to the console when you ran the the `rhc app create` 
+command. You can also access your OpenShift applications at
+https://openshift.redhat.com/app/console/applications.
 
 **Note**: You can see the webapp container logs if you log into the OpenShift machine
-(details on the OpenShift application page, under 'Remote Access')
-and type:
+(details on the OpenShift application page, under 'Remote Access') and type:
 
 ```bash
 tail -f app-root/logs/jbossews.log
@@ -87,17 +87,11 @@ file so that the data is visible. This page (which uses a Hive JDBC connection t
  http://logging-[your-domain].rhcloud.com/all_events.jsp
  
 **Note**: By default the application only has 1GB of disk space, 
-which is not enough if you leave the application running for long. You can increase it 
-via the web console, or by running:
+which is not enough if you leave the application running for more than a few minutes. You 
+can increase the amount of disk space via the web console, or by running:
 
 ```bash
 rhc cartridge storage jbossews-2.0 -a logging --set 4
-```
-
-Stop the application with
-
-```bash
-rhc app stop logging
 ```
 
 When you've finished with the application, delete it permanently with
