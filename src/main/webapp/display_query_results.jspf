@@ -27,7 +27,4 @@
     </tr>
     </c:forEach>
 </table>
-<p>
-<a href="../index.jsp">Back to reports</a>
-</p>
 

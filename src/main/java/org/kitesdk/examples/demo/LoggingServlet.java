@@ -54,7 +54,7 @@ public class LoggingServlet extends HttpServlet {
           .build();
       logger.info(event);
     }
-    pw.println("<p><a href=\"/\">Home</a></p>");
+    pw.println("<p><a href=\"index.jsp\">Home</a> | <a href=\"all_events.jsp\">All events</a></p>");
     pw.println("</body></html>");
 
   }

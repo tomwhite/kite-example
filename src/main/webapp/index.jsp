@@ -24,5 +24,6 @@ User ID: <input type="text" name="user_id" value="1">
 Message: <input type="text" name="message" value="Hello!">
 <input type="submit" value="Send">
 </form>
+<p><a href="index.jsp">Home</a> | <a href="all_events.jsp">All events</a></p>
 </body>
 </html>

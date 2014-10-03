@@ -29,5 +29,6 @@
 <%@ include file="display_query_results.jspf" %>
 <p>
 </form>
+<p><a href="index.jsp">Home</a> | <a href="all_events.jsp">All events</a></p>
 </body>
 </html>
