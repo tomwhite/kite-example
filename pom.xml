@@ -20,11 +20,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.kitesdk.examples</groupId>
-  <artifactId>openshift-demo</artifactId>
+  <artifactId>logging-openshift</artifactId>
   <version>0.16.0</version>
   <packaging>war</packaging>
 
-  <name>openshift-demo</name>
+  <name>logging-openshift</name>
 
   <parent>
     <groupId>org.kitesdk</groupId>
